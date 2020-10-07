@@ -1,0 +1,12 @@
+name: R_comparison
+title: R_comparison
+username:
+account: netique
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2896516
+bundleId: 3676058
+url: https://netique.shinyapps.io/R_comparison/
+when: 1601220241.67791
+asMultiple: FALSE
+asStatic: FALSE
