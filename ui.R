@@ -45,10 +45,11 @@ ui <-
         '<div style = "clear: both; height: 112px;"></div>
          <div class = "panel-footer", style = "opacity: 1.00; z-index: 1000; position: fixed; right: 0;bottom: 0;left: 0;">
          <div class = "footer-title" style="padding-bottom: 6px;">$R_t$ in Czechia</div>
-         <div class = "footer-copyright">&copy; 2020 Jan Netík | source freely available at <a href="https://github.com/netique/corona">github.com/netique/corona</a></div>
+         <div class = "footer-copyright">&copy; 2020 Jan Netík | source freely available at <a href="https://github.com/netique/R_comparison">github.com/netique/R_comparison</a><br>kindly supported by <a href="https://www.olejann.net/research-against-covid-19/">"Testing, incentives, information: How to mobilize society’s resources against the pandemic"</a> TACR GAMA grant at CERGE-EI and Charles University</div>
          <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
-             tex2jax: {inlineMath: [["$","$"]]}
+             tex2jax: {inlineMath: [["$","$"]]},
+             showMathMenu: true
             });
          </script>'
       )

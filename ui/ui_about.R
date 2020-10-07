@@ -36,6 +36,12 @@ about <- tabPanel(value = "about",
                     tags$li(HTML('Thompson, R. N., Stockwin, J. E., van Gaalen, R. D., Polonsky, J. A., Kamvar, Z. N., Demarsh, P. A., &#x2026; Cori, A. (2019). Improved inference of time-varying reproduction numbers during infectious disease outbreaks. <i>Epidemics</i>, <i>29</i>, 100356.'), a(href = "https://doi.org/10.1016/j.epidem.2019.100356", "https://doi.org/10.1016/j.epidem.2019.100356")),
                     tags$li(HTML('Wallinga, J., Teunis, P. (2004). Different epidemic curves for Severe Acute Respiratory Syndrome reveal similar impacts of control measures. <i>American Journal of Epidemiology</i>, <i>160</i>(6), 509&#x2013;516.'), a(href = "https://doi.org/10.1093/aje/kwh255", "https://doi.org/10.1093/aje/kwh255"))
                   ),
+
+
+h3("Licencing"),
+p('This program is free software and you can redistribute it and or modify it under the terms of the GNU GPL 3.'),
+h3("Financial support"),
+p('This work is supported by the project "Testing, incentives, information: How to mobilize society’s resources against the pandemic" at CERGE-EI and Charles University, under the TACR GAMA framework and under the auspices of the principal investigator Ole Jann.'),
                   
                   useShinyalert(),
                   
