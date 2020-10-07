@@ -1,84 +1,9 @@
+# Effective reproduction number<br>based on several time series sources<a href='https://netique.shinyapps.io/R_comparison'><img src='r.svg' align="right" height="120" /></a>
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+Here resides the open-source code for [Shiny](https://shiny.rstudio.com/) application (written in R) showing an estimate of so-called effective reproduction number R(t). The number is normally estimated on daily incidence (i.e. cases tested positive per day), but as the epidemy tracking reaches its limits, this could be rather misleading. In order to avoid relying solely on this time series, we can estimate R(t) on several others, presumably much more robust ones - namely hospitalizations, critical cases and deaths per day.
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+## License
+This program is free software and you can redistribute it and or modify it under the terms of the [GNU GPL 3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
-# Effective reproduction number $R_t$ estimate from various time series sources
-
-The goal of reschola is to support the workflow for data analysis at
-[Schola Empirica](http://scholaempirica.org) through a set of templates,
-themes, utilities, and documentation. The vignettes for the package
-document the Schola Empirica way of doing data analysis and provide
-guidance and tips on tools and good practice.
-
-## Installation
-
-You can install the released version of reschola from
-[Github](https://github.com) with:
-
-``` r
-remotes::install_github("scholaempirica/reschola", 
-                         ref = remotes::github_release(),
-                         build_vignettes = TRUE)
-```
-
-The current development version on [Github](https://github.com) can be
-installed with:
-
-``` r
-remotes::install_github("scholaempirica/reschola",
-                         build_vignettes = TRUE)
-```
-
-If you are having trouble installing packages from sources, the binaries
-of `reschola` are available in [the Schola `drat`
-repository](https://scholaempirica.github.io/drat). This is a package
-repository that can be used in the same way as CRAN, meaning you can use
-`install.packages()` and if binaries are available, you don’t need
-development tools to compile source packages.
-
-You can install binaries from Schola `drat` like so:
-
-``` r
-options(repos = c(getOption("repos"), "scholaempirica" = "https://scholaempirica.github.io/drat"))
-install.packages("reschola")
-```
-
-If you want to always have direct access to this `drat` repository like
-you have to CRAN, you can put this into your .Rprofile (after lines that
-set your CRAN mirror):
-
-``` r
-local({r <- getOption("repos")
-# add drat repo
-r["scholaempirica"] <- "https://scholaempirica.github.io/drat"
-options(repos=r)})
-```
-
-(use `usethis::edit_r_profile()` to open .Rprofile for editing.)
-
-Then, you can simply run `install.packages("reschola")` and the latest
-binary release of `reschola` will be installed even though it is not on
-CRAN.
-
-## What is inside the box and how to use it
-
-See the [Getting started](articles/reschola.html) vignette
-(`vignette('reschola', package = 'reschola')`) for an overview of
-templates, utilities and guidance in this package that together provide
-the infrastructure and mental models for the Schola Empirica way of
-working with data and reporting.
-
-## Acknowledgments
-
-All content in this package arose out of conversations with the guys at
-Schola Empirica and their desire to do data analysis well.
-
-The tools and concepts contained in it are heavily inspired by many
-wonderful members of the R community; references to specific
-contributions are contained in individual vignettes.
-
-Logo made using <https://connect.thinkr.fr/hexmake/>. The approach to
-project templates and some other components is heavily inspired by
-[ratlas](https://github.com/atlas-aai/ratlas/), including the reuse of
-components from [hrbrthemes](https://hrbrmstr.github.io/hrbrthemes/).
+## Financial support
+This work is supported by the project "Testing, incentives, information: How to mobilize society’s resources against the pandemic" at CERGE-EI and Charles University, under the [TACR GAMA framework](https://www.tacr.cz/en/gama-programme/) and under the auspices of the principal investigator [Ole Jann](https://www.olejann.net/).
