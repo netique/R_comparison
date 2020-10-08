@@ -74,21 +74,19 @@ hosp <- reactive({
 })
   
 merged <- reactive({
-  merged <- left_join(inc(), deaths()) %>% left_join(hosp())
+  
+  max_date <- Reduce(intersect, list(inc()$date, hosp()$date, deaths()$date)) %>% max(na.rm = TRUE) %>% as_date
+  
+  merged <- left_join(inc(), deaths()) %>% left_join(hosp()) %>% filter(date <= max_date)
+  merged[is.na(merged)] <- 0
+  
+    
   merged %<>% mutate(inc = lag(inc, input$inc_lag),
                      patients_in = lag(patients_in, input$hosp_lag),
                      patients_critical = lag(patients_critical, input$crit_lag),
                      deaths = lag(deaths, input$deaths_lag)
                      )
   
-  last_hosp_data_date <- last(hosp()$date)
-  last_merged_date <- last(merged$date)
-  
-  last_complete_date <- min(last_hosp_data_date, last_merged_date, na.rm = TRUE)
-  
-  merged[is.na(merged)] <- 0
-  
-  merged[merged$date != seq(last_complete_date+1,last_merged_date, by = 1), ]
 })
   
 
