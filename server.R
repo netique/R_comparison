@@ -78,15 +78,15 @@ merged <- reactive({
   max_date <- Reduce(intersect, list(inc()$date, hosp()$date, deaths()$date)) %>% max(na.rm = TRUE) %>% as_date
   
   merged <- left_join(inc(), deaths()) %>% left_join(hosp()) %>% filter(date <= max_date)
-  merged[is.na(merged)] <- 0
   
-    
   merged %<>% mutate(inc = lag(inc, input$inc_lag),
                      patients_in = lag(patients_in, input$hosp_lag),
                      patients_critical = lag(patients_critical, input$crit_lag),
                      deaths = lag(deaths, input$deaths_lag)
                      )
   
+  merged[is.na(merged)] <- 0
+  merged
 })
   
 
@@ -239,5 +239,33 @@ plt %>%
   )
 })
 
-output$selectize_out <- renderText({input$ts_source})
+
+observeEvent(input$reset_ts_lags, {
+  c(
+    "inc_lag",
+    "hosp_lag",
+    "crit_lag",
+    "deaths_lag"
+  ) %>%
+    map(~ updateSliderInput(session, .x, min = 0, value = 0, max = 30, step = 1))
+})
+
+observeEvent(input$reset_si, {
+  c(
+    "mean_si_inc",
+    "mean_si_hosp",
+    "mean_si_crit",
+    "mean_si_deaths"
+  ) %>%
+    map(~ updateSliderInput(session, .x, min = 1.1, value = 5.2, max = 30, step = .1))
+
+  c(
+    "std_si_inc",
+    "std_si_hosp",
+    "std_si_crit",
+    "std_si_deaths"
+  ) %>%
+    map(~ updateSliderInput(session, .x, min = 1.1, value = 4.7, max = 30, step = .1))
+})
+
 }

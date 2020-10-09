@@ -5,8 +5,8 @@ account: netique
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2896516
-bundleId: 3712954
+bundleId: 3717625
 url: https://netique.shinyapps.io/R_comparison/
-when: 1602080246.91592
+when: 1602172815.22818
 asMultiple: FALSE
 asStatic: FALSE

@@ -43,6 +43,7 @@ estimate <-
       column(3, sliderInput("crit_lag", label = "Critical", min = 0, value = 0, max = 30, step = 1)),
       column(3, sliderInput("deaths_lag", label = "Deaths", min = 0, value = 0, max = 30, step = 1))
     ),
+    fluidRow(column(1, offset = 11, actionButton("reset_ts_lags", "Reset"))),
 
 
     h3("(Pseudo)-serial interval mean and SD"),
@@ -68,6 +69,8 @@ estimate <-
         sliderInput("std_si_deaths", "SD SI", min = 1.1, value = 4.7, max = 30, step = .1)
       )
     ),
+    fluidRow(column(1, offset = 11, actionButton("reset_si", "Reset"))),
+    
 
 
 
