@@ -10,7 +10,7 @@ library(DT)
 # library(dqshiny)
 library(httr)
 library(rvest)
-
+library(zoo)
 library(shinythemes)
 library(plotly)
 library(patchwork)
@@ -267,5 +267,17 @@ observeEvent(input$reset_si, {
   ) %>%
     map(~ updateSliderInput(session, .x, min = 1.1, value = 4.7, max = 30, step = .1))
 })
+
+source("server/age_risk.R", local = TRUE)
+
+# url navigation ----------------------------------------------------------
+
+observe({
+  query <- parseQueryString(session$clientData$url_search)
+  if (!is.null(query$nav)) {
+    updateNavbarPage(session, "nav", selected = query$nav)
+  }
+})
+
 
 }
