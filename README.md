@@ -6,4 +6,4 @@ Here resides the open-source code for [Shiny](https://shiny.rstudio.com/) applic
 This program is free software and you can redistribute it and or modify it under the terms of the [GNU GPL 3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 ## Financial support
-This work is supported by the project "Testing, incentives, information: How to mobilize society’s resources against the pandemic" at CERGE-EI and Charles University, under the [TACR GAMA framework](https://www.tacr.cz/en/gama-programme/) and under the auspices of the principal investigator [Ole Jann](https://www.olejann.net/).
+This work is supported by the project "Testing, incentives, information: How to mobilize society’s resources against the pandemic" at CERGE-EI and Charles University ("[TP01010040 – The support of the process of commercialisation of research and development results at Charles University II](https://starfos.tacr.cz/cs/project/TP01010040)").
