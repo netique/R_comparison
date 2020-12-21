@@ -22,6 +22,7 @@ if (!require(mtaux)) {
 
 source("ui/ui_estimate.R", local = T, encoding = "UTF-8")
 source("ui/ui_age.R", local = T, encoding = "UTF-8")
+source("ui/ui_risk.R", local = T, encoding = "UTF-8")
 # source("ui/ui_settings.R", local = T, encoding = "UTF-8")
 source("ui/ui_about.R", local = T, encoding = "UTF-8")
 
@@ -36,7 +37,8 @@ ui <-
     selected = "est",
 
     estimate,
-    age_risk,
+    risk,
+    age,
     # settings,
     about,
 

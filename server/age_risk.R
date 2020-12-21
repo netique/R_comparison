@@ -1,8 +1,12 @@
 
-risk_ratios <- reactive({
-  read_rds("cdc_interpolated_risk_ratios.rds")
-})
+cdc_hospitalization_rate_ratio <- read_rds("cdc_hospitalization_rate_ratio.rds")
+cdc_death_rate_ratio <- read_rds("cdc_death_rate_ratio.rds")
+# cdc_ratios <- read_rds("cdc_ratios_approx.rds")
 
+# comp_risk <- function(type, inp_age) {
+#   lookup_vect <- ifelse(type == "hosp", cdc_hospitalization_rate_ratio, cdc_death_rate_ratio)
+#   lookup_vect[inp_age]
+# }
 
 # only "validated" data from HKS!!!
 khs_raw <- reactive({
@@ -26,6 +30,7 @@ khs <- reactive({
       # inf_abroad = nakaza_v_zahranici,
       # country = nakaza_zeme_csu_kod
     ) %>%
+    # filter(date >= "2020-09-01") %>% 
     as_tibble() %>%
     arrange(date) %>%
     mutate(
@@ -131,6 +136,7 @@ age_time_weeks <- reactive({
 output$age_time_weeks <- renderPlotly({
   (age_time_weeks() + ggtitle("")) %>%
     ggplotly() %>%
+    # rangeslider() %>%
     plotly::config(displayModeBar = F)
 })
 
@@ -310,12 +316,14 @@ output$age_time_days_down <- downloadHandler(
 
 
 # new risk ratios
-
-
 risks_inc_main <- reactive({
   khs() %>%
-    right_join(risk_ratios(), by = "age") %>%
-    group_by(date) %>%
+    mutate(
+      hospitalization_rate_ratio = cdc_hospitalization_rate_ratio[as.character(age)],
+      death_rate_ratio = cdc_death_rate_ratio[as.character(age)]
+    ) %>%
+  # right_join(cdc_ratios, by = "age") %>%
+  group_by(date) %>%
     mutate(
       hosp_risk = sum(hospitalization_rate_ratio), # sum of RR for given date
       death_risk = sum(death_rate_ratio),

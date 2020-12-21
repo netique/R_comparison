@@ -65,7 +65,7 @@ hosp <- reactive({
     date = dmy(Datum),
     patients_in = parse_number(`Aktuální počet hospitalizovaných osob`),
     patients_critical = parse_number(`Aktuální počet osob v těžkém stavu a/nebo s vysoce intenzivní péčí (UPV*, ECMO**)`),
-    patients_out = parse_number(`Počet hospitalizovaných osob, které byly vyléčeny nebo propuštěny do domácí izolace	`)
+    patients_out = parse_number(`Počet hospitalizovaných osob, které byly vyléčeny nebo propuštěny do domácí izolace`)
   )
   
   # convert cummulative "discharge" to daily, with 0 first
