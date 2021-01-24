@@ -76,7 +76,7 @@ hosp <- reactive({
     patients_critical = stav_tezky,
     patients_asymptomatic = stav_bez_priznaku,
     patients_mild = stav_lehky,
-    patients_moderate = stav_lehky
+    patients_moderate = stav_stredni
   )
   
   # # convert cummulative "discharge" to daily, with 0 first
