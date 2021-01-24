@@ -9,18 +9,18 @@ cdc_death_rate_ratio <- read_rds("cdc_death_rate_ratio.rds")
 # }
 
 # only "validated" data from HKS!!!
-khs_raw <- reactive({
-  fromJSON("https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/osoby.json")
-})
+  # khs_raw <-  fromJSON("https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19/osoby.json")
+  
+khs_raw <- readRDS("khs_raw.rds")
 
 khs_updated <- reactive({
-  khs_raw()$modified %>%
+  khs_raw$modified %>%
     as_datetime(tz = "Europe/Prague") %>%
     strftime(usetz = TRUE)
 })
 
 khs <- reactive({
-  khs_raw()$data %>%
+  khs_raw$data %>%
     transmute(
       date = ymd(datum),
       age = vek
@@ -30,11 +30,11 @@ khs <- reactive({
       # inf_abroad = nakaza_v_zahranici,
       # country = nakaza_zeme_csu_kod
     ) %>%
-    # filter(date >= "2020-09-01") %>% 
+    filter(date >= "2020-03-01") %>%
     as_tibble() %>%
     arrange(date) %>%
     mutate(
-      week = isoweek(date),
+      week = fct_inorder(paste0(isoweek(date), "/", year(date))),
       age_group = case_when(
         age %in% 0:9 ~ "0-9",
         age %in% 10:19 ~ "10-19",
@@ -117,7 +117,7 @@ age_time_weeks <- reactive({
     ggplot(aes(week, age_group)) +
     geom_bin2d(drop = FALSE, binwidth = 1) +
     scale_fill_viridis_c() +
-    scale_x_continuous(n.breaks = 15) +
+    scale_x_discrete(labels = function(x) {str_extract(x, ".*(?=/)")}) +
     coord_cartesian(expand = FALSE) +
     labs(
       title = "Weekly incidence by age categories in Czechia",
@@ -162,7 +162,7 @@ age_prop_time_week <- reactive({
     # filter(week %in% complete_weeks() ) %>%
     ggplot(aes(week, age_group, fill = pct_age)) +
     geom_tile() +
-    scale_x_continuous(n.breaks = 15) +
+    scale_x_discrete(labels = function(x) {str_extract(x, ".*(?=/)")}) +
     scale_fill_viridis_c() +
     coord_cartesian(expand = FALSE) +
     labs(

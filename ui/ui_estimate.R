@@ -27,9 +27,12 @@ estimate <-
         selectInput("ts_source", label = "Time series sources", multiple = TRUE, choice = c(
           "Incidence (tested positive)" = "incidence",
           "Hospitalized" = "hospitalized",
-          "Critical" = "critical",
+          "Hosp. asymptomatic" = "hosp. asymptomatic",
+          "Hosp. mild" = "hosp. mild",
+          "Hosp. moderate" = "hosp. moderate",
+          "Hosp. critical" = "hosp. critical",
           "Dead" = "dead"
-        ), selected = c("incidence", "hospitalized", "critical", "dead"))
+        ), selected = c("incidence", "hospitalized", "hosp. asymptomatic", "hosp. mild", "hosp. moderate", "hosp. critical", "dead"))
       ),
       column(4, br(),
              helpText("Select the source(s) you do not want to be displayed with a mouse click\nand press delete or backspace on your keyboard. To bring the source(s) back, click on the blank space and pick from the dropdown list.")),
@@ -40,7 +43,10 @@ estimate <-
     fluidRow(
       column(3, sliderInput("inc_lag", label = "Incidence", min = 0, value = 0, max = 30, step = 1)),
       column(3, sliderInput("hosp_lag", label = "Hospitalization", min = 0, value = 0, max = 30, step = 1)),
-      column(3, sliderInput("crit_lag", label = "Critical", min = 0, value = 0, max = 30, step = 1)),
+      column(3, sliderInput("asymp_lag", label = "Hosp. asymptomatic", min = 0, value = 0, max = 30, step = 1)),
+      column(3, sliderInput("mild_lag", label = "Hosp. mild", min = 0, value = 0, max = 30, step = 1)),
+      column(3, sliderInput("mod_lag", label = "Hosp.  moderate", min = 0, value = 0, max = 30, step = 1)),
+      column(3, sliderInput("crit_lag", label = "Hosp. critical", min = 0, value = 0, max = 30, step = 1)),
       column(3, sliderInput("deaths_lag", label = "Deaths", min = 0, value = 0, max = 30, step = 1))
     ),
     fluidRow(column(1, offset = 11, actionButton("reset_ts_lags", "Reset"))),
@@ -59,7 +65,22 @@ estimate <-
         sliderInput("std_si_hosp", "SD SI", min = 1.1, value = 4.7, max = 30, step = .1)
       ),
       column(
-        3, h4("Critical"),
+        3, h4("Hosp. asymptomatic"),
+        sliderInput("mean_si_asymp", "Mean SI", min = 1.1, value = 5.2, max = 30, step = .1),
+        sliderInput("std_si_asymp", "SD SI", min = 1.1, value = 4.7, max = 30, step = .1)
+      ),
+      column(
+        3, h4("Hosp. mild"),
+        sliderInput("mean_si_mild", "Mean SI", min = 1.1, value = 5.2, max = 30, step = .1),
+        sliderInput("std_si_mild", "SD SI", min = 1.1, value = 4.7, max = 30, step = .1)
+      ),
+      column(
+        3, h4("Hosp.  moderate"),
+        sliderInput("mean_si_mod", "Mean SI", min = 1.1, value = 5.2, max = 30, step = .1),
+        sliderInput("std_si_mod", "SD SI", min = 1.1, value = 4.7, max = 30, step = .1)
+      ),
+      column(
+        3, h4("Hosp. critical"),
         sliderInput("mean_si_crit", "Mean SI", min = 1.1, value = 5.2, max = 30, step = .1),
         sliderInput("std_si_crit", "SD SI", min = 1.1, value = 4.7, max = 30, step = .1)
       ),

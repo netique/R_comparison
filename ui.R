@@ -30,6 +30,7 @@ ui <-
   navbarPage(
     id = "nav",
     windowTitle = "R estimate in Czechia",
+    # tags$head(tags$script(src = "extract.js")),
     uiOutput("title"),
     # position = "fixed-top",
     # header = list(tags$style(type="text/css", "")),

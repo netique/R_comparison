@@ -2,6 +2,10 @@ risk <-
   tabPanel(
     value = "risk",
     "Risk-adjusted counts",
+    
+    # fetch and simplify JSON from MZCR
+    # actionButton("fetch_data", "Fetch data"),
+    
 
     h1(strong("Risk-adjusted case counts & other age-related statistics"),
       style = "margin-top: 0px;"

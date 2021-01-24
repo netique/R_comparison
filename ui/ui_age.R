@@ -2,7 +2,7 @@ age <-
   tabPanel(
     value = "age",
     "Incidence by age",
-
+    
     h3(strong("Daily incidence by age")),
     h4(em('based solely on KHS data, as the "complete" ones does not provide such a granularity; the excess reported by the laboratories is provided below')),
     fluidRow(column(12, withSpinner(
