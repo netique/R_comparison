@@ -41,8 +41,6 @@ about <- tabPanel(value = "about",
 h3("Licencing"),
 p('This program is free software and you can redistribute it and or modify it under the terms of the GNU GPL 3.'),
 h3("Financial support"),
-p('This work is supported by the project "Testing, incentives, information: How to mobilize society’s resources against the pandemic" at CERGE-EI and Charles University, under the TACR GAMA framework and under the auspices of the principal investigator Ole Jann.'),
-                  
-                  useShinyalert(),
-                  
+p('This work is supported by the project "Testing, incentives, information: How to mobilize society’s resources against the pandemic" at CERGE-EI and Charles University, under the TACR GAMA framework and under the auspices of the principal investigator Ole Jann.')
+
 )

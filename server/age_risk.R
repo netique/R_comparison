@@ -21,8 +21,8 @@ khs_updated <- reactive({
 
 khs <- reactive({
   khs_raw$data %>%
-    transmute(
-      date = ymd(datum),
+    select(
+      date = datum,
       age = vek
       # sex = as.factor(pohlavi),
       # nuts = kraj_nuts_kod,
@@ -30,8 +30,7 @@ khs <- reactive({
       # inf_abroad = nakaza_v_zahranici,
       # country = nakaza_zeme_csu_kod
     ) %>%
-    filter(date >= "2020-03-01") %>%
-    as_tibble() %>%
+    filter(date >= "2021-03-01") %>%
     arrange(date) %>%
     mutate(
       week = fct_inorder(paste0(isoweek(date), "/", year(date))),
@@ -121,9 +120,9 @@ age_time_weeks <- reactive({
     coord_cartesian(expand = FALSE) +
     labs(
       title = "Weekly incidence by age categories in Czechia",
-      subtitle = "based only on highly incomplete, so-called validated KHS data; only completely observed weeks are shown",
+      subtitle = "based only on so-called validated KHS data; only completely observed weeks are shown",
       y = "age group",
-      caption = paste("data updated", khs_updated() %>% strftime(usetz = TRUE), " |  © 2020 Jan Netík, source at github.com/netique/corona")
+      caption = paste("data updated", khs_updated() %>% strftime(usetz = TRUE), " | © 2021 Jan Netík")
     ) +
     mtaux::theme_mt(
       axis.ticks = element_line(color = "gray80"),
@@ -145,7 +144,7 @@ output$age_time_weeks_down <- downloadHandler(
     "age_time_weeks.pdf"
   },
   content = function(file) {
-    ggsave(file, plot = age_time_weeks(), device = cairo_pdf, width = 9.81, height = 6.76)
+    ggsave(file, plot = age_time_weeks(), device = cairo_pdf, width = 13, height = 6.76)
   }
 )
 # ggsave(here("plots", "age_time_weeks.png"), width = 9.81, height = 6.76)
@@ -167,11 +166,11 @@ age_prop_time_week <- reactive({
     coord_cartesian(expand = FALSE) +
     labs(
       title = "Distribution of weekly incidence among age groups in Czechia",
-      subtitle = "based only on highly incomplete, so-called validated KHS data",
+      subtitle = "based only on so-called validated KHS data",
       x = "week (ISO 8601)",
       y = "age group",
       fill = "% of week",
-      caption = paste("data updated", khs_updated(), " |  © 2020 Jan Netík, source at github.com/netique/corona")
+      caption = paste("data updated", khs_updated(), " | © 2021 Jan Netík")
     ) +
     mtaux::theme_mt(
       axis.ticks = element_line(color = "gray80"),
@@ -193,7 +192,7 @@ output$age_prop_time_week_down <- downloadHandler(
     "age_prop_time_week.pdf"
   },
   content = function(file) {
-    ggsave(file, plot = age_prop_time_week(), device = cairo_pdf, width = 9.81, height = 6.76)
+    ggsave(file, plot = age_prop_time_week(), device = cairo_pdf, width = 16, height = 6.76)
   }
 )
 
